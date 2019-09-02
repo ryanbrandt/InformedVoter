@@ -1,0 +1,22 @@
+.main-grid {
+  padding: 40px;
+}
+
+.detail-col {
+  align-content: center;
+}
+
+.content-col {
+  align-content: center;
+  overflow-y: auto;
+  height: 90vh;
+}
+
+.detail-row {
+  align-items: center;
+  height: 100vh;
+}
+
+.content-row {
+  align-content: center;
+}
