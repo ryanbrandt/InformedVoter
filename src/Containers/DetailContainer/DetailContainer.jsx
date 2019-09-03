@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import LoginForm from "../LoginForm/LoginForm";
-import Footer from "../Footer/Footer";
+import LoginForm from "../../Components/LoginForm/LoginForm";
+import Footer from "../../Components/Footer/Footer";
 
 import "./DetailContainer.css";
 

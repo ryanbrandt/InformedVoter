@@ -50,7 +50,7 @@ export default class MainGrid extends Component {
   };
 
   renderGrid() {
-    if (this.state.mobile) {
+    if (this.state.mobile)
       return (
         <div className="row-grid">
           <Row className="detail-row">
@@ -62,7 +62,6 @@ export default class MainGrid extends Component {
           </Row>
         </div>
       );
-    }
 
     return (
       <Row className="col-grid">

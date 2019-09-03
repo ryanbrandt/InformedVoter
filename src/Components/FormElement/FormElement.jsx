@@ -42,6 +42,7 @@ export default class FormElement extends Component {
       </div>
     );
   }
+
   renderButton() {
     return (
       <div className="form-element button">

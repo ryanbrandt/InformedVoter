@@ -1,4 +1,5 @@
-import { DO_AUTH, DO_DE_AUTH, REQUEST_API } from "./types";
+import { REQUEST_API } from "../Constants/types";
+import { DO_AUTH, DO_DE_AUTH } from "../Constants/authTypes";
 
 export const doAuth = payload => {
   return {

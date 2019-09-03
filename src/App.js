@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import store, { persistor } from "./store";
-import MainGrid from "./Components/MainGrid/MainGrid";
+import MainGrid from "./Containers/MainGrid/MainGrid";
 
 import "./App.css";
 

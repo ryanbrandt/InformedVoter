@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import FormElement from "../Subcomponents/FormElement/FormElement";
+import FormElement from "../FormElement/FormElement";
 
 import "./LoginForm.css";
 
