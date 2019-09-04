@@ -21,7 +21,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
+const composeEnhancers =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__;
 
 const store = createStore(
   persistedReducer,

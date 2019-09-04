@@ -1,17 +1,21 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
+
+import { updateSelection } from "../../../../Actions/searchActions";
 
 import "./SearchDropdown.css";
 
-export default class SearchDropdown extends Component {
+class SearchDropdown extends Component {
   handleSelect = e => {
-    let dropdownId = e.target.parentElement.getAttribute("aria-labelledby");
     this.persistSelection(e);
-    switch (
-      dropdownId
-      // dispatch appropriate action here
-    ) {
-    }
+    let field = e.target.parentElement
+      .getAttribute("aria-labelledby")
+      .split("_")[1];
+    let value = e.target.innerHTML;
+    let payload = { field: field, value: value };
+    // TODO: code this value for the FEC API!
+    this.props.updateSelection(payload);
   };
 
   persistSelection(e) {
@@ -43,3 +47,8 @@ export default class SearchDropdown extends Component {
     return this.renderDropdown();
   }
 }
+
+export default connect(
+  null,
+  { updateSelection }
+)(SearchDropdown);
