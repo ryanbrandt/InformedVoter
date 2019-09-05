@@ -9,26 +9,26 @@ export default class SearchDetail extends Component {
     return (
       <div className="search-detail-grid">
         <SearchDropdown
-          id="search_party"
+          id="party"
           label="Party"
           options={[
-            "Democrat",
-            "Republican",
-            "Socialist",
-            "Green",
-            "Libertarian",
-            "Independant"
+            ["Democrat", "DEM"],
+            ["Republican", "REP"],
+            ["Socialist", "SOC"],
+            ["Green", "GRE"],
+            ["Libertarian", "LIB"],
+            ["Independant", "IND"]
           ]}
         />
         <SearchDropdown
-          id="search_office"
+          id="office"
           label="Office"
-          options={["House", "Senate", "President"]}
+          options={[["House", "H"], ["Senate", "S"], ["President", "P"]]}
         />
         <SearchDropdown
-          id="search_status"
+          id="candidate_status"
           label="Candidate Status"
-          options={["Current", "Prior", "Future"]}
+          options={[["Current", "C"], ["Prior", "P"], ["Future", "F"]]}
         />
       </div>
     );

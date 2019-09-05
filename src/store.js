@@ -2,12 +2,21 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import createSagaMiddleware from "redux-saga";
-import { apply } from "@redux-saga/core/effects";
+
 import rootReducer from "./Reducers";
+import rootSaga from "./sagas";
 
 const systemInitialState = {
   auth: {
     user: {},
+    fetching: false
+  },
+  search: {
+    params: {
+      query: null,
+      advanced: {}
+    },
+    results: {},
     fetching: false
   }
 };
@@ -32,6 +41,8 @@ const store = createStore(
     composeEnhancers()
   )
 );
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 

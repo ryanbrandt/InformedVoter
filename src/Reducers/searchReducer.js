@@ -7,11 +7,7 @@ import { REQUEST_API } from "../Constants/types";
 const initialState = {
   params: {
     query: null,
-    advanced: {
-      office: null,
-      party: null,
-      status: null
-    }
+    advanced: {}
   },
   results: {},
   fetching: false

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import FormElement from "../FormElement/FormElement";
 import SearchDetail from "./Subcomponents/SearchDetail/SearchDetail";
+import { doSearch } from "../../Actions/searchActions";
 
-export default class Search extends Component {
+class Search extends Component {
   render() {
     return (
       <div className="search-grid">
@@ -19,8 +21,14 @@ export default class Search extends Component {
           required={false}
           id="search_submit"
           label="Search"
+          clickHandler={() => this.props.doSearch()}
         />
       </div>
     );
   }
 }
+
+export default connect(
+  null,
+  { doSearch }
+)(Search);

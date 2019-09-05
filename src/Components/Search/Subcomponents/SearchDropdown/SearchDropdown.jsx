@@ -9,12 +9,10 @@ import "./SearchDropdown.css";
 class SearchDropdown extends Component {
   handleSelect = e => {
     this.persistSelection(e);
-    let field = e.target.parentElement
-      .getAttribute("aria-labelledby")
-      .split("_")[1];
-    let value = e.target.innerHTML;
-    let payload = { field: field, value: value };
-    // TODO: code this value for the FEC API!
+    const payload = {
+      field: e.target.parentElement.getAttribute("aria-labelledby"),
+      value: e.target.id
+    };
     this.props.updateSelection(payload);
   };
 
@@ -35,8 +33,12 @@ class SearchDropdown extends Component {
       >
         {this.props.options.map((option, i) => {
           return (
-            <Dropdown.Item key={i} onClick={e => this.handleSelect(e)}>
-              {option}
+            <Dropdown.Item
+              key={i}
+              onClick={e => this.handleSelect(e)}
+              id={option[1]}
+            >
+              {option[0]}
             </Dropdown.Item>
           );
         })}

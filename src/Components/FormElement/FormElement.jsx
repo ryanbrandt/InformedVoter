@@ -46,7 +46,11 @@ export default class FormElement extends Component {
   renderButton() {
     return (
       <div className="form-element button">
-        <button type={this.props.type} className="btn btn-primary">
+        <button
+          type={this.props.type}
+          className="btn btn-primary"
+          onClick={this.props.clickHandler}
+        >
           {this.props.label}
         </button>
       </div>
