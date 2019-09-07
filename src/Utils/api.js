@@ -7,8 +7,8 @@ import { FEC_API_URL, API_URL, FEC_API_KEY } from "../local";
 export const fecApi = create({
   baseURL: FEC_API_URL,
   headers: {
-    accept: "application/json"
-  }
+    accept: "application/json",
+  },
 });
 
 fecApi.addRequestTransform(request => {
@@ -18,12 +18,12 @@ fecApi.addRequestTransform(request => {
 export const api = create({
   baseURL: API_URL,
   headers: {
-    accept: "application/json"
-  }
+    accept: "application/json",
+  },
 });
 
 /**
- * Rest functions
+ * Rest wrappers
  */
 export async function doGet(api, url) {
   let payload = {};
@@ -38,7 +38,13 @@ export async function doGet(api, url) {
 }
 
 /**
- * Rest utils
+ * Rest utilities
+ */
+
+/**
+ * @param {String} url endpoint to fetch from
+ * @param {Object} params params object from state
+ * @returns original endpoint url with query parameters appended
  */
 export function getUrlWithParams(url, params) {
   let filteredParams = {};

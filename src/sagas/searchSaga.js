@@ -15,9 +15,9 @@ export function* doSearch() {
   const { data, problem } = yield call(doGet, fecApi, urlWithParams);
   if (data) {
     console.log(data);
-    yield put({ type: "SEARCH_RESULTS_RECEIVED", results: data });
+    yield put({ type: "SEARCH_RESULTS_RECEIVED", results: data.results });
   } else {
     // TODO will have to check status code from this action...
-    yield put({ type: "FEC_API_REQUEST_FAILED", problem: problem });
+    yield put({ type: "API_REQUEST_FAILED", problem: problem });
   }
 }

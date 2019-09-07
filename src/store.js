@@ -9,21 +9,21 @@ import rootSaga from "./sagas";
 const systemInitialState = {
   auth: {
     user: {},
-    fetching: false
+    fetching: false,
   },
   search: {
     params: {
-      query: null,
-      advanced: {}
+      q: null,
+      advanced: {},
     },
-    results: {},
-    fetching: false
-  }
+    results: [],
+    fetching: false,
+  },
 };
 
 const persistConfig = {
   key: "root",
-  storage
+  storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
