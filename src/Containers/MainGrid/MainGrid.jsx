@@ -10,7 +10,7 @@ export default class MainGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mobile: false
+      mobile: false,
     };
   }
 
@@ -21,7 +21,7 @@ export default class MainGrid extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.debounceResize);
-    if (this.resizeTimer) clearTimeout(this.resizeTimer);
+    if (this.resizeTimer) clearInterval(this.resizeTimer);
   }
 
   debounceResize = () => {
@@ -40,11 +40,11 @@ export default class MainGrid extends Component {
   resizeHandler = () => {
     if (window.innerHeight < 768 || window.innerWidth < 1024) {
       this.setState({
-        mobile: true
+        mobile: true,
       });
     } else {
       this.setState({
-        mobile: false
+        mobile: false,
       });
     }
   };

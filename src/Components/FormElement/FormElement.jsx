@@ -25,6 +25,7 @@ export default class FormElement extends Component {
           type={this.props.type}
           id={this.props.id}
           required={this.props.required}
+          onChange={this.props.changeHandler}
         />
       </div>
     );

@@ -1,6 +1,6 @@
 # Informed Voter
 
-A client to consume from the FEC API to keep an eye on candidates for the upcoming election
+A (WIP) client to consume from the FEC API to keep an eye on political candidates
 
 ### Tech
 

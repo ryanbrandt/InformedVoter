@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Footer from "../../Components/Footer/Footer";
 import Search from "../../Components/Search/Search";
+import DataContainer from "./Subcontainers/DataContainer/DataContainer";
 
 import "./ContentContainer.css";
 
@@ -14,6 +15,7 @@ class SideContainer extends Component {
     return (
       <div className="content-container">
         <Search />
+        <DataContainer />
         {this.renderFooter()}
       </div>
     );
@@ -21,7 +23,7 @@ class SideContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(

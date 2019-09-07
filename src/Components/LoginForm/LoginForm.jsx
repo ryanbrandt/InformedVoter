@@ -9,13 +9,13 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: true
+      login: true,
     };
   }
 
   toggleForm = () => {
     this.setState({
-      login: !this.state.login
+      login: !this.state.login,
     });
   };
 
@@ -70,7 +70,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  fetching: state.auth.fetching
+  fetching: state.auth.fetching,
 });
 
 export default connect(
