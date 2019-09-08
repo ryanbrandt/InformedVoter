@@ -9,15 +9,19 @@ export function* doSearchWatcher() {
   yield takeEvery("DO_SEARCH", doSearch);
 }
 
-export function* doSearch() {
+export function* doSearch(action) {
   const params = yield select(getParams);
+  // if a paginated request
+  if (action.page) params.page = action.page;
   const urlWithParams = yield call(getUrlWithParams, "/candidates", params);
   const { data, problem } = yield call(doGet, fecApi, urlWithParams);
   if (data) {
-    console.log(data);
     yield put({ type: "SEARCH_RESULTS_RECEIVED", results: data.results });
+    yield put({
+      type: "PAGINATE_SEARCH_RESULTS",
+      pagination: data.pagination,
+    });
   } else {
-    // TODO will have to check status code from this action...
     yield put({ type: "API_REQUEST_FAILED", problem: problem });
   }
 }
