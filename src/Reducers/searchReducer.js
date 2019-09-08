@@ -2,6 +2,7 @@ import {
   UPDATE_SELECTION,
   UPDATE_QUERY,
   SEARCH_RESULTS_RECEIVED,
+  PAGINATE_SEARCH_RESULTS,
 } from "../Constants/seachTypes";
 import { REQUEST_API } from "../Constants/types";
 
@@ -11,6 +12,7 @@ const initialState = {
     advanced: {},
   },
   results: [],
+  pagination: {},
   fetching: false,
 };
 
@@ -44,6 +46,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         results: action.results,
+      };
+    case PAGINATE_SEARCH_RESULTS:
+      return {
+        ...state,
+        pagination: action.pagination,
       };
     default:
       return state;

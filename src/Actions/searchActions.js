@@ -1,10 +1,11 @@
 import {
   DO_SEARCH,
   SEARCH_RESULTS_RECEIVED,
+  PAGINATE_SEARCH_RESULTS,
   UPDATE_SELECTION,
   UPDATE_QUERY,
 } from "../Constants/seachTypes";
-import { REQUEST_API, FEC_API_REQUEST_FAILED } from "../Constants/types";
+import { REQUEST_API, API_REQUEST_FAILED } from "../Constants/types";
 
 export const updateSelection = payload => {
   return {
@@ -20,9 +21,10 @@ export const updateQuery = query => {
   };
 };
 
-export const doSearch = () => {
+export const doSearch = (page = null) => {
   return {
     type: DO_SEARCH,
+    page,
   };
 };
 
@@ -33,15 +35,22 @@ export const searchResultsReceived = results => {
   };
 };
 
+export const paginateSearchResults = pagination => {
+  return {
+    type: PAGINATE_SEARCH_RESULTS,
+    pagination,
+  };
+};
+
 export const requestApi = () => {
   return {
     type: REQUEST_API,
   };
 };
 
-export const fecApiRequestFailed = problem => {
+export const apiRequestFailed = problem => {
   return {
-    type: FEC_API_REQUEST_FAILED,
+    type: API_REQUEST_FAILED,
     problem,
   };
 };

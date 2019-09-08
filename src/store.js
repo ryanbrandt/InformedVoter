@@ -17,6 +17,7 @@ const systemInitialState = {
       advanced: {},
     },
     results: [],
+    pagination: {},
     fetching: false,
   },
 };
