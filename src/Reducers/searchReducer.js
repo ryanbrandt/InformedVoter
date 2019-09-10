@@ -4,7 +4,8 @@ import {
   UPDATE_QUERY,
   CLEAR_QUERY,
   SEARCH_RESULTS_RECEIVED,
-  PAGINATE_SEARCH_RESULTS
+  PAGINATE_SEARCH_RESULTS,
+  CLEAR_PAGINATION
 } from "../Constants/seachTypes";
 import { REQUEST_API } from "../Constants/types";
 
@@ -55,7 +56,7 @@ export default function(state = initialState, action) {
         ...state,
         params: {
           ...state.params,
-          q: action.query
+          q: action.query !== "" ? action.query : null
         }
       };
     case REQUEST_API:
@@ -73,6 +74,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         pagination: action.pagination
+      };
+    case CLEAR_PAGINATION:
+      return {
+        ...state,
+        params: {
+          ...state.params,
+          page: null
+        }
       };
     default:
       return state;

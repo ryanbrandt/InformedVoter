@@ -14,9 +14,15 @@
 
 .detail-row {
   align-items: center;
-  height: 100vh;
+  min-height: 90vh;
+  max-height: 100vh;
+}
+
+.collapsed {
+  display: none;
 }
 
 .content-row {
-  align-content: center;
+  min-height: 80vh;
+  text-align: center;
 }

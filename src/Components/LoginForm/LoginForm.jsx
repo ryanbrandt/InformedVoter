@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
@@ -9,19 +10,19 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: true,
+      login: true
     };
   }
 
   toggleForm = () => {
     this.setState({
-      login: !this.state.login,
+      login: !this.state.login
     });
   };
 
-  renderForm() {
+  renderForm(login) {
     return (
-      <form id={this.state.login ? "login" : "register"}>
+      <form id={login ? "login" : "register"}>
         <FormElement
           type="email"
           placeholder="Your email"
@@ -42,25 +43,21 @@ class LoginForm extends Component {
             required={true}
           />
         )}
-        <FormElement
-          type="submit"
-          label={this.state.login ? "Login" : "Register"}
-        />
+        <FormElement type="submit" label={login ? "Login" : "Register"} />
       </form>
     );
   }
 
   render() {
+    const { login } = this.state;
     return (
       <div className="login-form-container">
         <p className="app-text-info">Login to personalize your experience</p>
-        {this.renderForm()}
+        {this.renderForm(login)}
         <div className="form-detail">
           <small>
             <a className="app-link" href="#" onClick={() => this.toggleForm()}>
-              {this.state.login
-                ? "Don't have an account?"
-                : "Already have an account?"}
+              {login ? "Don't have an account?" : "Already have an account?"}
             </a>
           </small>
         </div>
@@ -70,7 +67,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  fetching: state.auth.fetching,
+  fetching: state.auth.fetching
 });
 
 export default connect(

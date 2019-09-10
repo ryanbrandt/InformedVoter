@@ -7,32 +7,33 @@ import Footer from "../../Components/Footer/Footer";
 import "./DetailContainer.css";
 
 class DetailContainer extends Component {
-  renderDetail() {
-    if (this.isAuth()) return <h1>Navigation goes here</h1>;
+  renderDetail(auth) {
+    if (this.isAuth(auth)) return <h1>Navigation goes here</h1>;
     return <LoginForm />;
   }
 
-  renderHeader() {
-    if (this.isAuth())
-      return <h1>Welcome back, {this.props.auth.user.display}</h1>;
+  renderHeader(auth) {
+    if (this.isAuth(auth)) return <h1>Welcome back, {auth.user.display}</h1>;
     return <h1>Welcome to Informed Voter!</h1>;
   }
 
-  renderFooter() {
-    if (!this.props.mobile) return <Footer mobile={this.props.mobile} />;
+  renderFooter(mobile) {
+    if (!mobile) return <Footer mobile={mobile} />;
   }
 
-  isAuth() {
-    return Object.entries(this.props.auth.user).length !== 0;
+  isAuth(auth) {
+    return Object.entries(auth.user).length !== 0;
   }
 
   render() {
+    const { mobile, auth } = this.props;
+
     return (
       <div className="detail-container">
-        <div className="detail-header">{this.renderHeader()}</div>
+        <div className="detail-header">{this.renderHeader(auth)}</div>
         <hr />
-        <div className="detail">{this.renderDetail()}</div>
-        {this.renderFooter()}
+        <div className="detail">{this.renderDetail(auth)}</div>
+        {this.renderFooter(mobile)}
       </div>
     );
   }

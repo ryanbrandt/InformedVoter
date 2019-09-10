@@ -5,7 +5,8 @@ import {
   UPDATE_SELECTION,
   CLEAR_SELECTION,
   UPDATE_QUERY,
-  CLEAR_QUERY
+  CLEAR_QUERY,
+  CLEAR_PAGINATION
 } from "../Constants/seachTypes";
 import { REQUEST_API, API_REQUEST_FAILED } from "../Constants/types";
 
@@ -54,6 +55,12 @@ export const paginateSearchResults = pagination => {
   return {
     type: PAGINATE_SEARCH_RESULTS,
     pagination
+  };
+};
+
+export const clearPagination = () => {
+  return {
+    type: CLEAR_PAGINATION
   };
 };
 

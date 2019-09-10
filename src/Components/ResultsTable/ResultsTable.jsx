@@ -5,6 +5,8 @@ import PaginationDetail from "./Subcomponents/PaginationDetail/PaginationDetail"
 import ResultRow from "./Subcomponents/ResultRow/ResultRow";
 import Loader from "../Loader/Loader";
 
+import "./ResultsTable.css";
+
 class ResultsTable extends Component {
   renderContent() {
     const { pages, results, fetching } = this.props;

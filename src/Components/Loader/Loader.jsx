@@ -2,7 +2,6 @@ import React from "react";
 import { Spinner } from "react-bootstrap";
 
 export default function Loader(props) {
-  const { visible } = props;
   return (
     <div
       className="loader-container"

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 
 import ExpandedRow from "../ExpandedRow/ExpandedRow";
@@ -8,14 +9,14 @@ export default class ResultRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false,
+      expanded: false
     };
   }
 
   toggleExpand = e => {
     e.preventDefault();
     this.setState({
-      expanded: !this.state.expanded,
+      expanded: !this.state.expanded
     });
   };
   render() {

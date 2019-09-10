@@ -10,14 +10,15 @@ import { updateQuery } from "../../Actions/searchActions";
 class Search extends Component {
   debouncedChangeHandler = e => {
     e.persist();
+    const { value } = e.target;
     if (this.changeTimer) {
       clearTimeout(this.changeTimer);
       this.changeTimer = setTimeout(() => {
-        this.props.updateQuery(e.target.value);
+        this.props.updateQuery(value.trim());
       }, 500);
     } else {
       this.changeTimer = setTimeout(() => {
-        this.props.updateQuery(e.target.value);
+        this.props.updateQuery(value.trim());
       }, 500);
     }
   };
@@ -27,6 +28,8 @@ class Search extends Component {
   }
 
   render() {
+    const { doSearch } = this.props;
+
     return (
       <div className="search-grid">
         <FormElement
@@ -41,14 +44,23 @@ class Search extends Component {
           type="submit"
           required={false}
           label="Search"
-          clickHandler={() => this.props.doSearch()}
+          clickHandler={() => doSearch()}
         />
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  pagination: state.search.pagination
+});
+
+const mapDispatchToProps = dispatch => ({
+  doSearch: () => dispatch(doSearch()),
+  updateQuery: q => dispatch(updateQuery(q))
+});
+
 export default connect(
-  null,
-  { doSearch, updateQuery }
+  mapStateToProps,
+  mapDispatchToProps
 )(Search);

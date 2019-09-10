@@ -10,8 +10,11 @@ export function* doSearchWatcher() {
 }
 
 export function* doSearch(action) {
-  // only show loader on non-paginated requests
-  if (!action.page) yield put({ type: "REQUEST_API" });
+  // only show loader/clear pagination if base request
+  if (!action.page) {
+    yield put({ type: "REQUEST_API" });
+    yield put({ type: "CLEAR_PAGINATION" });
+  }
   const params = yield select(getParams);
   // if a paginated request, add page param
   if (action.page) params.page = action.page;
