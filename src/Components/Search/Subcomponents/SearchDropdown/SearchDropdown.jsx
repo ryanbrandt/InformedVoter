@@ -8,20 +8,12 @@ import "./SearchDropdown.css";
 
 class SearchDropdown extends Component {
   handleSelect = e => {
-    this.persistSelection(e);
     const payload = {
       field: e.target.parentElement.getAttribute("aria-labelledby"),
       value: e.target.id
     };
     this.props.updateSelection(payload);
   };
-
-  persistSelection(e) {
-    e.target.parentElement.childNodes.forEach(option => {
-      option.classList.remove("active");
-    });
-    e.target.classList.add("active");
-  }
 
   renderDropdown() {
     return (
