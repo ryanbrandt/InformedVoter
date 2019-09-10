@@ -3,22 +3,31 @@ import { connect } from "react-redux";
 
 import PaginationDetail from "./Subcomponents/PaginationDetail/PaginationDetail";
 import ResultRow from "./Subcomponents/ResultRow/ResultRow";
+import Loader from "../Loader/Loader";
 
 class ResultsTable extends Component {
-  render() {
+  renderContent() {
+    const { pages, results, fetching } = this.props;
+    if (fetching) return <Loader />;
     return (
-      <div className="results-table">
-        {this.props.pages > 1 && <PaginationDetail />}
-        {this.props.results.map((result, i) => {
+      <div>
+        {pages > 1 && <PaginationDetail />}
+        {results.map((result, i) => {
           return <ResultRow key={i} result={result} />;
         })}
       </div>
     );
   }
+
+  render() {
+    return <div className="results-table">{this.renderContent()}</div>;
+  }
 }
+
 const mapStateToProps = state => ({
+  fetching: state.search.fetching,
   results: state.search.results,
-  pages: state.search.pagination.pages,
+  pages: state.search.pagination.pages
 });
 export default connect(
   mapStateToProps,

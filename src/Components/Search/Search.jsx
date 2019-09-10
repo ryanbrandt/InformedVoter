@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import FormElement from "../FormElement/FormElement";
 import SearchDetail from "./Subcomponents/SearchDetail/SearchDetail";
+import SearchStatus from "./Subcomponents/SearchStatus/SearchStatus";
 import { doSearch } from "../../Actions/searchActions";
 import { updateQuery } from "../../Actions/searchActions";
 
@@ -34,6 +35,7 @@ class Search extends Component {
           placeholder="Search Candidates By Name"
           changeHandler={e => this.debouncedChangeHandler(e)}
         />
+        <SearchStatus />
         <SearchDetail />
         <FormElement
           type="submit"
