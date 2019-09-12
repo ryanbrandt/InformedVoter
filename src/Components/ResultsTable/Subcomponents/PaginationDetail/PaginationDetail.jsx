@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
+import { Pagination } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { doSearch } from "../../../../Actions/searchActions";
@@ -10,7 +11,11 @@ class PaginationDetail extends Component {
   handleClick = e => {
     const { doSearch } = this.props;
     e.preventDefault();
-    doSearch(e.target.getAttribute("data-value"));
+    // fix for bootstrap Last/First
+    const pageNum = e.target.getAttribute("data-value")
+      ? e.target.getAttribute("data-value")
+      : e.target.parentNode.getAttribute("data-value");
+    doSearch(pageNum);
   };
 
   renderNums() {
@@ -18,29 +23,37 @@ class PaginationDetail extends Component {
     const { pagination } = this.props;
     const { page, pages } = pagination;
     for (
-      let i = page > 5 ? page - 5 : 1;
-      i <= pages && i <= (page > 5 ? page + 5 : page + (10 - page));
+      let i = page > 3 ? page - 2 : 1;
+      i <= pages && i <= (page > 3 ? page + 2 : page + (5 - page));
       i += 1
     ) {
       nums.push(i);
     }
-    return nums.map(num => {
-      return (
-        <a
-          href="#"
-          key={num}
-          data-value={num}
+    return (
+      <Pagination size="sm" className="pagination-detail">
+        <Pagination.First data-value={1} onClick={e => this.handleClick(e)} />
+        {nums.map(num => {
+          return (
+            <Pagination.Item
+              key={num}
+              active={num === page}
+              data-value={num}
+              onClick={e => this.handleClick(e)}
+            >
+              {num}
+            </Pagination.Item>
+          );
+        })}
+        <Pagination.Last
+          data-value={pages}
           onClick={e => this.handleClick(e)}
-          className={num === page ? "app-link page active" : "app-link page"}
-        >
-          {num}
-        </a>
-      );
-    });
+        />
+      </Pagination>
+    );
   }
 
   render() {
-    return <div className="pagination-detail">{this.renderNums()}</div>;
+    return this.renderNums();
   }
 }
 
