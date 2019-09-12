@@ -7,6 +7,9 @@ import rootReducer from "./Reducers";
 import rootSaga from "./Sagas";
 
 const systemInitialState = {
+  system: {
+    contentDisplay: "search",
+  },
   auth: {
     user: {},
     fetching: false,
@@ -19,6 +22,13 @@ const systemInitialState = {
     results: [],
     pagination: {},
     fetching: false,
+  },
+  hub: {
+    activeCandidateId: null,
+    activeCandidate: null,
+    initializing: false,
+    financials: {},
+    history: {},
   },
 };
 
