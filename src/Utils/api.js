@@ -2,7 +2,7 @@ import { create } from "apisauce";
 import { FEC_API_URL, API_URL, FEC_API_KEY } from "../local";
 
 /**
- * Singleton apisauce objects
+ * apisauce wrappers
  */
 export const fecApi = create({
   baseURL: FEC_API_URL,
