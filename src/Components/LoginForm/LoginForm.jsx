@@ -10,16 +10,19 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: true
+      login: true,
     };
   }
 
   toggleForm = () => {
+    const { login } = this.state;
+
     this.setState({
-      login: !this.state.login
+      login: !login,
     });
   };
 
+  // eslint-disable-next-line class-methods-use-this
   renderForm(login) {
     return (
       <form id={login ? "login" : "register"}>
@@ -35,7 +38,7 @@ class LoginForm extends Component {
           id="password"
           required={true}
         />
-        {!this.state.login && (
+        {!login && (
           <FormElement
             type="password"
             placeholder="Confirm password"
@@ -67,7 +70,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  fetching: state.auth.fetching
+  fetching: state.auth.fetching,
 });
 
 export default connect(

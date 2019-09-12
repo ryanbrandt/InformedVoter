@@ -29,7 +29,7 @@ class ResultsTable extends Component {
 const mapStateToProps = state => ({
   fetching: state.search.fetching,
   results: state.search.results,
-  pages: state.search.pagination.pages
+  pages: state.search.pagination.pages,
 });
 export default connect(
   mapStateToProps,

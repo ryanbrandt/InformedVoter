@@ -8,22 +8,24 @@ import "./SearchDropdown.css";
 
 class SearchDropdown extends Component {
   handleSelect = e => {
+    const { updateSelection } = this.props;
     const payload = {
       field: e.target.parentElement.getAttribute("aria-labelledby"),
-      value: e.target.id
+      value: e.target.id,
     };
-    this.props.updateSelection(payload);
+    updateSelection(payload);
   };
 
   renderDropdown() {
+    const { id, label, options } = this.props;
     return (
       <DropdownButton
-        id={this.props.id}
+        id={id}
         className="dropdown"
-        title={this.props.label}
+        title={label}
         variant="secondary"
       >
-        {this.props.options.map((option, i) => {
+        {options.map((option, i) => {
           return (
             <Dropdown.Item
               key={i}
@@ -37,12 +39,17 @@ class SearchDropdown extends Component {
       </DropdownButton>
     );
   }
+
   render() {
     return this.renderDropdown();
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  updateSelection: payload => dispatch(updateSelection(payload)),
+});
+
 export default connect(
   null,
-  { updateSelection }
+  mapDispatchToProps
 )(SearchDropdown);

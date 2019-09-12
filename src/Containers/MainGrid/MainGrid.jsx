@@ -11,7 +11,7 @@ export default class MainGrid extends Component {
     super(props);
     this.state = {
       mobile: false,
-      collapsed: true
+      collapsed: true,
     };
   }
 
@@ -41,30 +41,31 @@ export default class MainGrid extends Component {
   resizeHandler = () => {
     if (window.innerHeight < 768 || window.innerWidth < 1024) {
       this.setState({
-        mobile: true
+        mobile: true,
       });
     } else {
       this.setState({
-        mobile: false
+        mobile: false,
       });
     }
   };
 
   toggleCollapse = () => {
+    const { collapsed } = this.state;
     this.setState({
-      collapsed: !this.state.collapsed
+      collapsed: !collapsed,
     });
   };
 
   renderGrid() {
     const { mobile, collapsed } = this.state;
-    if (mobile)
+    if (mobile) {
       return (
         <div className="row-grid">
           <i
             className="fa fa-bars fa-2x"
             onClick={() => this.toggleCollapse()}
-          ></i>
+          />
           <Row className={collapsed ? "detail-row collapsed" : "detail-row"}>
             <DetailContainer mobile={mobile} />
           </Row>
@@ -74,6 +75,7 @@ export default class MainGrid extends Component {
           </Row>
         </div>
       );
+    }
 
     return (
       <Row className="col-grid">

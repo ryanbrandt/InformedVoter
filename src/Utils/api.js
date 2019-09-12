@@ -12,7 +12,7 @@ export const fecApi = create({
 });
 
 fecApi.addRequestTransform(request => {
-  request.params["api_key"] = FEC_API_KEY;
+  request.params.api_key = FEC_API_KEY;
 });
 
 export const api = create({
@@ -26,7 +26,7 @@ export const api = create({
  * Rest wrappers
  */
 export async function doGet(api, url) {
-  let payload = {};
+  const payload = {};
   await api.get(url).then(res => {
     if (res.ok) {
       payload.data = res.data;
@@ -42,12 +42,28 @@ export async function doGet(api, url) {
  */
 
 /**
+ * @param {Object} params object of variable nesting containing API params
+ * @param {Object} filteredParams object containing filtered params without nesting
+ * Recurisvely filters null properties and removes nesting
+ */
+function filterNullParams(params, filteredParams) {
+  Object.keys(params).forEach(key => {
+    if (params[key] instanceof Object) {
+      return filterNullParams(params[key], filteredParams);
+    }
+    if (params[key] !== null) {
+      filteredParams[`${key}`] = params[key];
+    }
+  });
+}
+
+/**
  * @param {String} url endpoint to fetch from
  * @param {Object} params params object from state
  * @returns original endpoint url with query parameters appended
  */
 export function getUrlWithParams(url, params) {
-  let filteredParams = {};
+  const filteredParams = {};
   filterNullParams(params, filteredParams);
   const filteredParamsLen = Object.keys(filteredParams).length;
   const urlWithParams =
@@ -55,23 +71,11 @@ export function getUrlWithParams(url, params) {
       ? url
       : `${url}?${Object.keys(filteredParams)
           .map((key, i) => {
-            if (i !== filteredParamsLen - 1)
+            if (i !== filteredParamsLen - 1) {
               return `${key}=${filteredParams[key]}&`;
+            }
             return `${key}=${filteredParams[key]}`;
           })
           .join("")}`;
   return urlWithParams;
-}
-
-/**
- * @param {Object} params object of variable nesting containing API params
- * @param {Object} filteredParams object containing filtered params without nesting
- * Recurisvely filters null properties and removes nesting
- */
-function filterNullParams(params, filteredParams) {
-  Object.keys(params).forEach(key => {
-    if (params[key] instanceof Object)
-      return filterNullParams(params[key], filteredParams);
-    if (params[key] !== null) filteredParams[`${key}`] = params[key];
-  });
 }

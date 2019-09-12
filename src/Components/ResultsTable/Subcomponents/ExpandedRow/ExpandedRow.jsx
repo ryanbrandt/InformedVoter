@@ -5,6 +5,7 @@ import { Row, Col } from "react-bootstrap";
 import { decodeStatus } from "../../../../Utils/helpers";
 
 function ExpandedRow(props) {
+  const { result } = props;
   return (
     <Row
       className="expanded-content"
@@ -13,24 +14,32 @@ function ExpandedRow(props) {
       <Col>
         <Row>
           <b>Affiliation:</b>&nbsp;
-          {props.result.party_full ? props.result.party_full : "N/A"}
+          {result.party_full ? result.party_full : "N/A"}
         </Row>
         <Row>
           <b>Active Through:</b>&nbsp;
-          {props.result.active_through ? props.result.active_through : "N/A"}
+          {result.active_through ? result.active_through : "N/A"}
         </Row>
       </Col>
       <Col>
         <Row>
           <b>Status:</b>&nbsp;
-          {decodeStatus(props.result.candidate_status)}
+          {decodeStatus(result.candidate_status)}
         </Row>
         <Row>
           <b>Last Filed:</b>&nbsp;
-          {new Date(props.result.last_file_date).toLocaleDateString()}
+          {new Date(result.last_file_date).toLocaleDateString()}
         </Row>
       </Col>
-      <a href="#" className="app-link" style={{ padding: "5px" }}>
+      <a
+        href="#"
+        data-value={result.candidate_id}
+        className="app-link"
+        style={{ padding: "5px" }}
+        onClick={e => {
+          e.preventDefault();
+        }}
+      >
         See financials and more
       </a>
     </Row>

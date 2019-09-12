@@ -4,66 +4,71 @@ import "./FormElement.css";
 
 export default class FormElement extends Component {
   renderLabel() {
-    if (this.props.label)
+    const { label, required, id } = this.props;
+    if (label) {
       return (
-        <label
-          className={this.props.required ? "required" : ""}
-          htmlFor={this.props.id}
-        >
-          {this.props.label}
+        <label className={required ? "required" : ""} htmlFor={id}>
+          {label}
         </label>
       );
+    }
   }
 
   renderInput() {
+    const { placeholder, type, id, required, changeHandler } = this.props;
+
     return (
       <div className="form-element">
         {this.renderLabel()}
         <input
           className="form-control"
-          placeholder={this.props.placeholder}
-          type={this.props.type}
-          id={this.props.id}
-          required={this.props.required}
-          onChange={this.props.changeHandler}
+          placeholder={placeholder}
+          type={type}
+          id={id}
+          required={required}
+          onChange={changeHandler}
         />
       </div>
     );
   }
+
   renderTexarea() {
+    const { placeholder, id, required } = this.props;
+
     return (
       <div className="form-element">
         {this.renderLabel()}
         <textarea
           className="form-control"
-          placeholder={this.props.placeholder}
-          id={this.props.id}
-          required={this.props.required}
+          placeholder={placeholder}
+          id={id}
+          required={required}
         />
       </div>
     );
   }
 
   renderButton() {
+    const { type, label, clickHandler } = this.props;
+
     return (
       <div className="form-element button">
-        <button
-          type={this.props.type}
-          className="btn btn-primary"
-          onClick={this.props.clickHandler}
-        >
-          {this.props.label}
+        <button type={type} className="btn btn-primary" onClick={clickHandler}>
+          {label}
         </button>
       </div>
     );
   }
 
   render() {
-    if (
-      ["text", "password", "email", "number", "date"].includes(this.props.type)
-    )
+    const { type } = this.props;
+
+    if (["text", "password", "email", "number", "date"].includes(type)) {
       return this.renderInput();
-    else if (this.props.type === "textarea") return this.renderTexarea();
-    else return this.renderButton();
+    }
+    if (type === "textarea") {
+      return this.renderTexarea();
+    }
+    return this.renderButton();
   }
 }

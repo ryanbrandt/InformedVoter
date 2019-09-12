@@ -8,19 +8,22 @@ import "./PaginationDetail.css";
 
 class PaginationDetail extends Component {
   handleClick = e => {
+    const { doSearch } = this.props;
     e.preventDefault();
-    this.props.doSearch(e.target.getAttribute("data-value"));
+    doSearch(e.target.getAttribute("data-value"));
   };
 
   renderNums() {
-    let nums = [];
-    const { page, pages } = this.props.pagination;
+    const nums = [];
+    const { pagination } = this.props;
+    const { page, pages } = pagination;
     for (
       let i = page > 5 ? page - 5 : 1;
       i <= pages && i <= (page > 5 ? page + 5 : page + (10 - page));
       i += 1
-    )
+    ) {
       nums.push(i);
+    }
     return nums.map(num => {
       return (
         <a
@@ -44,7 +47,12 @@ class PaginationDetail extends Component {
 const mapStateToProps = state => ({
   pagination: state.search.pagination,
 });
+
+const mapDispatchToProps = dispatch => ({
+  doSearch: pageNum => dispatch(doSearch(pageNum)),
+});
+
 export default connect(
   mapStateToProps,
-  { doSearch }
+  mapDispatchToProps
 )(PaginationDetail);

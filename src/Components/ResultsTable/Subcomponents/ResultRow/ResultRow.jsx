@@ -9,38 +9,39 @@ export default class ResultRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
     };
   }
 
   toggleExpand = e => {
     e.preventDefault();
+    const { expanded } = this.state;
     this.setState({
-      expanded: !this.state.expanded
+      expanded: !expanded,
     });
   };
+
   render() {
+    const { result } = this.props;
+    const { expanded } = this.state;
+
     return (
       <div className="result-row">
         <div className="result-content">
-          {this.props.result.name}
+          {result.name}
           <a href="#" onClick={e => this.toggleExpand(e)}>
-            {this.state.expanded ? (
-              <i className="fa fa-minus fa-lg expand-icon"></i>
+            {expanded ? (
+              <i className="fa fa-minus fa-lg expand-icon" />
             ) : (
-              <i className="fa fa-plus fa-lg expand-icon"></i>
+              <i className="fa fa-plus fa-lg expand-icon" />
             )}
           </a>
         </div>
         <small>
-          For <b>{this.props.result.office_full}</b>
+          For <b>{result.office_full}</b>
         </small>
-        <div
-          className={
-            this.state.expanded ? "expanded-row-active" : "expanded-row"
-          }
-        >
-          <ExpandedRow result={this.props.result} />
+        <div className={expanded ? "expanded-row-active" : "expanded-row"}>
+          <ExpandedRow result={result} />
         </div>
       </div>
     );

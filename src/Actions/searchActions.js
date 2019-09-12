@@ -1,78 +1,68 @@
-import {
-  DO_SEARCH,
-  SEARCH_RESULTS_RECEIVED,
-  PAGINATE_SEARCH_RESULTS,
-  UPDATE_SELECTION,
-  CLEAR_SELECTION,
-  UPDATE_QUERY,
-  CLEAR_QUERY,
-  CLEAR_PAGINATION
-} from "../Constants/seachTypes";
-import { REQUEST_API, API_REQUEST_FAILED } from "../Constants/types";
+import * as a from "../Constants/seachTypes";
 
 export const updateSelection = payload => {
   return {
-    type: UPDATE_SELECTION,
-    payload
+    type: a.UPDATE_SELECTION,
+    payload,
   };
 };
 
 export const updateQuery = query => {
   return {
-    type: UPDATE_QUERY,
-    query
+    type: a.UPDATE_QUERY,
+    query,
   };
 };
 
 export const clearQuery = () => {
   return {
-    type: CLEAR_QUERY
+    type: a.CLEAR_QUERY,
   };
 };
 
 export const clearSelection = field => {
   return {
-    type: CLEAR_SELECTION,
-    field
+    type: a.CLEAR_SELECTION,
+    field,
   };
 };
 
 export const doSearch = (page = null) => {
   return {
-    type: DO_SEARCH,
-    page
+    type: a.DO_SEARCH,
+    page,
   };
 };
 
 export const searchResultsReceived = results => {
   return {
-    type: SEARCH_RESULTS_RECEIVED,
-    results
+    type: a.SEARCH_RESULTS_RECEIVED,
+    results,
   };
 };
 
 export const paginateSearchResults = pagination => {
   return {
-    type: PAGINATE_SEARCH_RESULTS,
-    pagination
+    type: a.PAGINATE_SEARCH_RESULTS,
+    pagination,
   };
 };
 
 export const clearPagination = () => {
   return {
-    type: CLEAR_PAGINATION
+    type: a.CLEAR_PAGINATION,
   };
 };
 
-export const requestApi = () => {
+export const requestSearch = () => {
   return {
-    type: REQUEST_API
+    type: a.REQUEST_SEARCH,
   };
 };
 
-export const apiRequestFailed = problem => {
+export const searchRequestErrors = problem => {
   return {
-    type: API_REQUEST_FAILED,
-    problem
+    type: a.SEARCH_REQUEST_ERRORS,
+    problem,
   };
 };

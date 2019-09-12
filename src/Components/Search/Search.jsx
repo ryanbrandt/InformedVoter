@@ -4,28 +4,28 @@ import { connect } from "react-redux";
 import FormElement from "../FormElement/FormElement";
 import SearchDetail from "./Subcomponents/SearchDetail/SearchDetail";
 import SearchStatus from "./Subcomponents/SearchStatus/SearchStatus";
-import { doSearch } from "../../Actions/searchActions";
-import { updateQuery } from "../../Actions/searchActions";
+import { doSearch, updateQuery } from "../../Actions/searchActions";
 
 class Search extends Component {
-  debouncedChangeHandler = e => {
-    e.persist();
-    const { value } = e.target;
-    if (this.changeTimer) {
-      clearTimeout(this.changeTimer);
-      this.changeTimer = setTimeout(() => {
-        this.props.updateQuery(value.trim());
-      }, 500);
-    } else {
-      this.changeTimer = setTimeout(() => {
-        this.props.updateQuery(value.trim());
-      }, 500);
-    }
-  };
-
   componentWillUnmount() {
     if (this.changeTimer) clearInterval(this.changeTimer);
   }
+
+  debouncedChangeHandler = e => {
+    const { updateQuery } = this.props;
+    const { value } = e.target;
+
+    if (this.changeTimer) {
+      clearTimeout(this.changeTimer);
+      this.changeTimer = setTimeout(() => {
+        updateQuery(value.trim());
+      }, 500);
+    } else {
+      this.changeTimer = setTimeout(() => {
+        updateQuery(value.trim());
+      }, 500);
+    }
+  };
 
   render() {
     const { doSearch } = this.props;
@@ -52,12 +52,12 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  pagination: state.search.pagination
+  pagination: state.search.pagination,
 });
 
 const mapDispatchToProps = dispatch => ({
   doSearch: () => dispatch(doSearch()),
-  updateQuery: q => dispatch(updateQuery(q))
+  updateQuery: q => dispatch(updateQuery(q)),
 });
 
 export default connect(

@@ -1,18 +1,19 @@
-import { select } from "redux-saga/effects";
-import { put, takeEvery, call } from "redux-saga/effects";
+import { select, put, takeEvery, call } from "redux-saga/effects";
 
 import { fecApi, doGet, getUrlWithParams } from "../Utils/api";
 
+/**
+ * Selectors
+ */
 export const getParams = state => state.search.params;
 
-export function* doSearchWatcher() {
-  yield takeEvery("DO_SEARCH", doSearch);
-}
-
+/**
+ * Search
+ */
 export function* doSearch(action) {
   // only show loader/clear pagination if base request
   if (!action.page) {
-    yield put({ type: "REQUEST_API" });
+    yield put({ type: "REQUEST_SEARCH" });
     yield put({ type: "CLEAR_PAGINATION" });
   }
   const params = yield select(getParams);
@@ -26,9 +27,13 @@ export function* doSearch(action) {
     yield put({ type: "SEARCH_RESULTS_RECEIVED", results: data.results });
     yield put({
       type: "PAGINATE_SEARCH_RESULTS",
-      pagination: data.pagination
+      pagination: data.pagination,
     });
   } else {
-    yield put({ type: "API_REQUEST_FAILED", problem: problem });
+    yield put({ type: "API_REQUEST_FAILED", problem });
   }
+}
+
+export function* doSearchWatcher() {
+  yield takeEvery("DO_SEARCH", doSearch);
 }

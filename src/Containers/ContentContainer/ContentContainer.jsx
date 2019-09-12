@@ -9,8 +9,13 @@ import "./ContentContainer.css";
 
 class SideContainer extends Component {
   renderFooter() {
-    if (this.props.mobile) return <Footer mobile={this.props.mobile} />;
+    const { mobile } = this.props;
+
+    if (mobile) {
+      return <Footer mobile={mobile} />;
+    }
   }
+
   render() {
     return (
       <div className="content-container">

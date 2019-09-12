@@ -1,23 +1,22 @@
-import { REQUEST_API } from "../Constants/types";
-import { DO_AUTH, DO_DE_AUTH } from "../Constants/authTypes";
+import { DO_AUTH, DO_DE_AUTH, REQUEST_AUTH } from "../Constants/authTypes";
 
 const initialState = {
   user: {},
-  fetching: false
+  fetching: false,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case REQUEST_API:
+    case REQUEST_AUTH:
       return {
         ...state,
-        fetching: true
+        fetching: true,
       };
     case DO_AUTH:
       return {
         ...state,
         user: action.payload,
-        fetching: false
+        fetching: false,
       };
     case DO_DE_AUTH:
       return initialState;

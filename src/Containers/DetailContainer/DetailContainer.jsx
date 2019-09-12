@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
@@ -7,9 +8,14 @@ import Footer from "../../Components/Footer/Footer";
 import "./DetailContainer.css";
 
 class DetailContainer extends Component {
-  renderDetail(auth) {
-    if (this.isAuth(auth)) return <h1>Navigation goes here</h1>;
-    return <LoginForm />;
+  isAuth(auth) {
+    return Object.entries(auth.user).length !== 0;
+  }
+
+  renderFooter(mobile) {
+    if (!mobile) {
+      return <Footer mobile={mobile} />;
+    }
   }
 
   renderHeader(auth) {
@@ -17,12 +23,9 @@ class DetailContainer extends Component {
     return <h1>Welcome to Informed Voter!</h1>;
   }
 
-  renderFooter(mobile) {
-    if (!mobile) return <Footer mobile={mobile} />;
-  }
-
-  isAuth(auth) {
-    return Object.entries(auth.user).length !== 0;
+  renderDetail(auth) {
+    if (this.isAuth(auth)) return <h1>Navigation goes here</h1>;
+    return <LoginForm />;
   }
 
   render() {
@@ -40,7 +43,7 @@ class DetailContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(

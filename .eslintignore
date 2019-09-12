@@ -1,0 +1,5 @@
+webpack.config.js
+.tern-project
+.package.json
+dist/*
+node_modules/

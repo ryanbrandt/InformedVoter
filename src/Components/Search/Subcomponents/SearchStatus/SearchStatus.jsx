@@ -7,11 +7,12 @@ import "./SearchStatus.css";
 import {
   decodeStatus,
   decodeOffice,
-  decodeParty
+  decodeParty,
 } from "../../../../Utils/helpers";
 import { clearSelection, clearQuery } from "../../../../Actions/searchActions";
 
 class SearchStatus extends Component {
+  // eslint-disable-next-line class-methods-use-this
   decodeAdvanced(advanced, key) {
     switch (key) {
       case "party":
@@ -24,6 +25,7 @@ class SearchStatus extends Component {
         return advanced[key];
     }
   }
+
   render() {
     const { params } = this.props;
     const { clearQuery, clearSelection } = this.props;
@@ -48,7 +50,7 @@ class SearchStatus extends Component {
                 clearQuery();
               }}
             >
-              <sup>X</sup>
+              <sup>&times;</sup>
             </a>
           </Badge>
         )}
@@ -65,7 +67,7 @@ class SearchStatus extends Component {
                     clearSelection(key);
                   }}
                 >
-                  <sup>X</sup>
+                  <sup>&times;</sup>
                 </a>
               </Badge>
             )
@@ -77,12 +79,12 @@ class SearchStatus extends Component {
 }
 
 const mapStateToProps = state => ({
-  params: state.search.params
+  params: state.search.params,
 });
 
 const mapDispatchToProps = dispatch => ({
   clearQuery: () => dispatch(clearQuery()),
-  clearSelection: key => dispatch(clearSelection(key))
+  clearSelection: key => dispatch(clearSelection(key)),
 });
 
 export default connect(
