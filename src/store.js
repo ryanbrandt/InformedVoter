@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "./Reducers";
-import rootSaga from "./sagas";
+import rootSaga from "./Sagas";
 
 const systemInitialState = {
   auth: {
