@@ -60,9 +60,9 @@ export const requestSearch = () => {
   };
 };
 
-export const searchRequestErrors = problem => {
+export const searchRequestFailed = problem => {
   return {
-    type: a.SEARCH_REQUEST_ERRORS,
+    type: a.SEARCH_REQUEST_FAILED,
     problem,
   };
 };

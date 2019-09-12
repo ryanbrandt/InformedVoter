@@ -1,11 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
 
+import { setContentDisplay } from "../../../../Actions/systemActions";
+import { setActiveCandidate } from "../../../../Actions/hubActions";
 import { decodeStatus } from "../../../../Utils/helpers";
 
-function ExpandedRow(props) {
+const ExpandedRow = props => {
+  const handleClick = async e => {
+    const { setActiveCandidate, setContentDisplay } = props;
+    e.preventDefault();
+    await setActiveCandidate(
+      e.target.getAttribute("data-value"),
+      e.target.getAttribute("data-string")
+    );
+    setContentDisplay("hub");
+  };
+
   const { result } = props;
+
   return (
     <Row
       className="expanded-content"
@@ -34,16 +48,26 @@ function ExpandedRow(props) {
       <a
         href="#"
         data-value={result.candidate_id}
+        data-string={result.name}
         className="app-link"
         style={{ padding: "5px" }}
         onClick={e => {
-          e.preventDefault();
+          handleClick(e);
         }}
       >
         See financials and more
       </a>
     </Row>
   );
-}
+};
 
-export default ExpandedRow;
+const mapDispatchToProps = dispatch => ({
+  setContentDisplay: display => dispatch(setContentDisplay(display)),
+  setActiveCandidate: (id, candidate) =>
+    dispatch(setActiveCandidate(id, candidate)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ExpandedRow);

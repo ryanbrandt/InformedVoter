@@ -27,13 +27,35 @@ export const api = create({
  */
 export async function doGet(api, url) {
   const payload = {};
-  await api.get(url).then(res => {
-    if (res.ok) {
-      payload.data = res.data;
-    } else {
-      payload.problem = res.problem;
-    }
-  });
+  try {
+    await api.get(url).then(res => {
+      if (res.ok) {
+        payload.data = res.data;
+      } else {
+        payload.problem = res.problem;
+      }
+    });
+  } catch (e) {
+    console.log(`Exception in HTTP GET for ${url}`);
+    payload.problem = e;
+  }
+  return payload;
+}
+
+export async function doPost(api, url, body) {
+  const payload = {};
+  try {
+    await api.post(url, body).then(res => {
+      if (res.ok) {
+        payload.data = res.data;
+      } else {
+        payload.problem = res.problem;
+      }
+    });
+  } catch (e) {
+    console.log(`Exception in HTTP POST for ${url}`);
+    payload.problem = e;
+  }
   return payload;
 }
 
