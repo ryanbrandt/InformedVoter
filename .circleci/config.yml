@@ -42,7 +42,7 @@ jobs:
           name: Check Server Started
           shell: /bin/sh
           command: |
-            wget --retry-connrefused --waitretry=2 --read-timeout=40 --timeout=35 -t 10 http://localhost:4444/
+            wget --retry-connrefused --waitretry=2 --read-timeout=40 --timeout=35 -t 10 http://localhost:3000/
             :
 
       - run:
