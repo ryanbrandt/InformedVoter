@@ -8,6 +8,8 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.16.2
+      environment:
+        # TODO
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -33,5 +35,19 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: yarn test
+      # Start server, run tests
+      - run:
+          name: Start Server
+          command: yarn start
+          background: true
+
+      - run:
+          name: Check Server Started
+          shell: /bin/sh
+          command: |
+            wget --retry-connrefused --waitretry=2 --read-timeout=40 --timeout=35 -t 10 http://localhost:4444/
+            :
+
+      - run:
+        name: Integration Test
+        command: yarn cypress run
