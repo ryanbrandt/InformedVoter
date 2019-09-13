@@ -3,7 +3,7 @@ import React from "react";
 
 import "./Footer.css";
 
-export default function footer(props) {
+export const Footer = props => {
   const { mobile } = props;
 
   return (
@@ -28,4 +28,6 @@ export default function footer(props) {
       <small>Informed Voter, 2019 &copy;</small>
     </div>
   );
-}
+};
+
+export default Footer;

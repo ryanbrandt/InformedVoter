@@ -4,7 +4,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
 import "./SearchDetail.css";
 
-export default function SearchDetail() {
+export const SearchDetail = () => {
   return (
     <div className="search-detail-grid">
       <SearchDropdown
@@ -31,4 +31,6 @@ export default function SearchDetail() {
       />
     </div>
   );
-}
+};
+
+export default SearchDetail;
