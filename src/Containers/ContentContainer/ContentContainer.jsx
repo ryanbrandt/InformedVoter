@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import Footer from "../../Components/Footer/Footer";
 import Search from "../../Components/Search/Search";
+import CandidateHub from "../../Components/CandidateHub/CandidateHub";
+import HubHeader from "../../Components/CandidateHub/Subcomponents/Header/HubHeader";
 import DataContainer from "./Subcontainers/DataContainer/DataContainer";
 
 import "./ContentContainer.css";
@@ -10,17 +12,32 @@ import "./ContentContainer.css";
 class SideContainer extends Component {
   renderFooter() {
     const { mobile } = this.props;
-
     if (mobile) {
       return <Footer mobile={mobile} />;
     }
   }
 
+  renderHeader() {
+    const { system, mobile } = this.props;
+    if (system.contentDisplay === "search") {
+      return <Search />;
+    }
+    return <HubHeader mobile={mobile} />;
+  }
+
+  renderBody() {
+    const { system } = this.props;
+    if (system.contentDisplay === "search") {
+      return <DataContainer />;
+    }
+    return <CandidateHub />;
+  }
+
   render() {
     return (
       <div className="content-container">
-        <Search />
-        <DataContainer />
+        {this.renderHeader()}
+        {this.renderBody()}
         {this.renderFooter()}
       </div>
     );
@@ -28,7 +45,7 @@ class SideContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  system: state.system,
 });
 
 export default connect(

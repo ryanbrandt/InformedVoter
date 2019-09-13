@@ -15,6 +15,9 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "react/jsx-one-expression-per-line": "off",
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
     "react/jsx-filename-extension": [
       1,
       {
@@ -29,5 +32,9 @@
     "comma-dangle": ["error", "always-multiline"],
     "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 0
+  },
+  "plugins": ["cypress"],
+  "env": {
+    "cypress/globals": true
   }
 }

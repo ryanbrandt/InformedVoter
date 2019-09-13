@@ -1,4 +1,4 @@
-import { select, put, takeEvery, call } from "redux-saga/effects";
+import { select, put, takeLatest, call } from "redux-saga/effects";
 
 import { fecApi, doGet, getUrlWithParams } from "../Utils/api";
 
@@ -30,10 +30,10 @@ export function* doSearch(action) {
       pagination: data.pagination,
     });
   } else {
-    yield put({ type: "API_REQUEST_FAILED", problem });
+    yield put({ type: "SEARCH_REQUEST_FAILED", problem });
   }
 }
 
 export function* doSearchWatcher() {
-  yield takeEvery("DO_SEARCH", doSearch);
+  yield takeLatest("DO_SEARCH", doSearch);
 }
