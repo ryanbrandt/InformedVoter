@@ -34,6 +34,7 @@ class Search extends Component {
       <div className="search-grid">
         <FormElement
           type="text"
+          id="search_candidate"
           required={false}
           placeholder="Search Candidates By Name"
           changeHandler={e => this.debouncedChangeHandler(e)}

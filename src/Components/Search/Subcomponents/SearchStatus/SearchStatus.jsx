@@ -47,6 +47,7 @@ class SearchStatus extends Component {
               className="app-link"
               onClick={e => {
                 e.preventDefault();
+                document.getElementById("search_candidate").value = "";
                 clearQuery();
               }}
             >

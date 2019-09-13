@@ -6,3 +6,18 @@
 .mobile {
   width: 100%;
 }
+
+.candidate-header {
+  display: inline-block;
+}
+
+.back {
+  float: right;
+  display: inline-block;
+}
+
+.back-mobile {
+  text-align: left;
+  display: block;
+  padding: 5px;
+}
