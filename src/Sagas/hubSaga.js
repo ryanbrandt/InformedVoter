@@ -1,11 +1,7 @@
 import { select, put, takeLatest, call } from "redux-saga/effects";
 
+import { getActiveCandidateId } from "../Selectors/hubSelectors";
 import { fecApi, doGet } from "../Utils/api";
-
-/**
- * Selectors
- */
-export const getActiveCandidateId = state => state.hub.activeCandidateId;
 
 /**
  * Initialize hub

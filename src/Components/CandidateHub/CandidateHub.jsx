@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Loader from "../Loader/Loader";
+import { getHubInitializing } from "../../Selectors/hubSelectors";
 import { initializeCandidateHub } from "../../Actions/hubActions";
 
 import "./CandidateHub.css";
@@ -13,8 +14,8 @@ class CandidateHub extends Component {
   }
 
   renderBody() {
-    const { hub } = this.props;
-    if (hub.initializing) {
+    const { initializing } = this.props;
+    if (initializing) {
       return (
         <div className="loader-container">
           <Loader />
@@ -34,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  hub: state.hub,
+  initializing: getHubInitializing(state),
 });
 
 export default connect(

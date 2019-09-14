@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer/Footer";
 import Search from "../../Components/Search/Search";
 import CandidateHub from "../../Components/CandidateHub/CandidateHub";
 import HubHeader from "../../Components/CandidateHub/Subcomponents/Header/HubHeader";
-import DataContainer from "./Subcontainers/DataContainer/DataContainer";
+import ResultsTable from "../../Components/ResultsTable/ResultsTable";
 
 import "./ContentContainer.css";
 
@@ -28,7 +28,7 @@ class SideContainer extends Component {
   renderBody() {
     const { system } = this.props;
     if (system.contentDisplay === "search") {
-      return <DataContainer />;
+      return <ResultsTable />;
     }
     return <CandidateHub />;
   }

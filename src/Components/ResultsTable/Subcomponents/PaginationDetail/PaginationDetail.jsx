@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Pagination } from "react-bootstrap";
 import { connect } from "react-redux";
 
+import { getResultPagination } from "../../../../Selectors/searchSelectors";
 import { doSearch } from "../../../../Actions/searchActions";
 
 import "./PaginationDetail.css";
@@ -58,7 +59,7 @@ class PaginationDetail extends Component {
 }
 
 const mapStateToProps = state => ({
-  pagination: state.search.pagination,
+  pagination: getResultPagination(state),
 });
 
 const mapDispatchToProps = dispatch => ({

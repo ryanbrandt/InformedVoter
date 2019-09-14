@@ -1,11 +1,7 @@
 import { select, put, takeLatest, call } from "redux-saga/effects";
 
+import { getParams } from "../Selectors/searchSelectors";
 import { fecApi, doGet, getUrlWithParams } from "../Utils/api";
-
-/**
- * Selectors
- */
-export const getParams = state => state.search.params;
 
 /**
  * Search
@@ -34,6 +30,6 @@ export function* doSearch(action) {
   }
 }
 
-export function* doSearchWatcher() {
+export function* watchDoSearch() {
   yield takeLatest("DO_SEARCH", doSearch);
 }

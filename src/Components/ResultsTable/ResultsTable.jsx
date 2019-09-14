@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import {
+  getSearchFetching,
+  getSearchResults,
+  getNumResultPages,
+} from "../../Selectors/searchSelectors";
 import PaginationDetail from "./Subcomponents/PaginationDetail/PaginationDetail";
 import ResultRow from "./Subcomponents/ResultRow/ResultRow";
 import Loader from "../Loader/Loader";
@@ -27,9 +32,9 @@ class ResultsTable extends Component {
 }
 
 const mapStateToProps = state => ({
-  fetching: state.search.fetching,
-  results: state.search.results,
-  pages: state.search.pagination.pages,
+  fetching: getSearchFetching(state),
+  results: getSearchResults(state),
+  pages: getNumResultPages(state),
 });
 export default connect(
   mapStateToProps,

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { getActiveCandidate } from "../../../../Selectors/hubSelectors";
 import { setContentDisplay } from "../../../../Actions/systemActions";
 
 import "./HubHeader.css";
@@ -53,7 +54,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  candidate: state.hub.activeCandidate,
+  candidate: getActiveCandidate(state),
 });
 
 export default connect(

@@ -1,8 +1,8 @@
 import { all } from "redux-saga/effects";
 
-import { doSearchWatcher } from "./searchSaga";
+import { watchDoSearch } from "./searchSaga";
 import { watchInitializeHub } from "./hubSaga";
 
 export default function* rootSaga() {
-  yield all([doSearchWatcher(), watchInitializeHub()]);
+  yield all([watchDoSearch(), watchInitializeHub()]);
 }
