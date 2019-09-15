@@ -4,8 +4,8 @@ const initialState = {
   activeCandidateId: null,
   activeCandidate: null,
   initializing: false,
-  financials: {},
-  history: {},
+  financials: [],
+  history: [],
 };
 
 export default function(state = initialState, action) {
