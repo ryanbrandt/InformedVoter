@@ -27,8 +27,8 @@ const systemInitialState = {
     activeCandidateId: null,
     activeCandidate: null,
     initializing: false,
-    financials: {},
-    history: {},
+    financials: [],
+    history: [],
   },
 };
 
