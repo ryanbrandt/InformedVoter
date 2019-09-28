@@ -5,13 +5,12 @@ import "./FormElement.css";
 export default class FormElement extends Component {
   renderLabel() {
     const { label, required, id } = this.props;
-    if (label) {
-      return (
-        <label className={required ? "required" : ""} htmlFor={id}>
-          {label}
-        </label>
-      );
-    }
+
+    return label ? (
+      <label className={required ? "required" : ""} htmlFor={id}>
+        {label}
+      </label>
+    ) : null;
   }
 
   renderInput() {

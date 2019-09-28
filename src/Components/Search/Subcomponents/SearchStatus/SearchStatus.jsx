@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { Badge } from "react-bootstrap";
 import { connect } from "react-redux";
@@ -12,8 +11,7 @@ import {
 import { clearSelection, clearQuery } from "../../../../Actions/searchActions";
 
 class SearchStatus extends Component {
-  // eslint-disable-next-line class-methods-use-this
-  decodeAdvanced(advanced, key) {
+  decodeAdvanced = (advanced, key) => {
     switch (key) {
       case "party":
         return decodeParty(advanced[key]);
@@ -24,12 +22,13 @@ class SearchStatus extends Component {
       default:
         return advanced[key];
     }
-  }
+  };
 
   render() {
     const { params } = this.props;
     const { clearQuery, clearSelection } = this.props;
     const { q, advanced } = params;
+
     const isEmpty =
       !q &&
       (Object.keys(advanced).length === 0 ||

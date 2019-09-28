@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
@@ -9,12 +8,14 @@ import { decodeStatus } from "../../../../Utils/helpers";
 
 const ExpandedRow = props => {
   const handleClick = async e => {
-    const { setActiveCandidate, setContentDisplay } = props;
     e.preventDefault();
+    const { setActiveCandidate, setContentDisplay } = props;
+
     await setActiveCandidate(
       e.target.getAttribute("data-value"),
       e.target.getAttribute("data-string")
     );
+
     setContentDisplay("hub");
   };
 

@@ -9,6 +9,7 @@ import "./SearchDropdown.css";
 class SearchDropdown extends Component {
   handleSelect = e => {
     const { updateSelection } = this.props;
+
     const payload = {
       field: e.target.parentElement.getAttribute("aria-labelledby"),
       value: e.target.id,

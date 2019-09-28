@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
@@ -22,28 +21,28 @@ class LoginForm extends Component {
     });
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  renderForm(login) {
+  renderForm = () => {
+    const { login } = this.state;
     return (
       <form id={login ? "login" : "register"}>
         <FormElement
           type="email"
           placeholder="Your email"
           id="email"
-          required={true}
+          required
         />
         <FormElement
           type="password"
           placeholder="Your password"
           id="password"
-          required={true}
+          required
         />
         {!login && (
           <FormElement
             type="password"
             placeholder="Confirm password"
             id="password"
-            required={true}
+            required
           />
         )}
         <FormElement type="submit" label={login ? "Login" : "Register"} />
@@ -56,7 +55,7 @@ class LoginForm extends Component {
     return (
       <div className="login-form-container">
         <p className="app-text-info">Login to personalize your experience</p>
-        {this.renderForm(login)}
+        {this.renderForm()}
         <div className="form-detail">
           <small>
             <a className="app-link" href="#" onClick={() => this.toggleForm()}>

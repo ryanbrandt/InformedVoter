@@ -15,7 +15,9 @@ import "./ResultsTable.css";
 class ResultsTable extends Component {
   renderContent() {
     const { pages, results, fetching } = this.props;
+
     if (fetching) return <Loader />;
+
     return (
       <>
         {pages > 1 && <PaginationDetail />}
