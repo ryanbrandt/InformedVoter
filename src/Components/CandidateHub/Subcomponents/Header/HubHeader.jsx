@@ -9,6 +9,7 @@ import "./HubHeader.css";
 export const HubHeader = props => {
   const renderMasthead = (candidate, mobile) => {
     const { setContentDisplay } = props;
+    
     if (mobile) {
       return (
         <div>
