@@ -19,12 +19,12 @@ class ResultsTable extends Component {
     if (fetching) return <Loader />;
 
     return (
-      <div>
+      <>
         {pages > 1 && <PaginationDetail />}
         {results.map((result, i) => {
           return <ResultRow key={i} result={result} />;
         })}
-      </div>
+      </>
     );
   }
 
