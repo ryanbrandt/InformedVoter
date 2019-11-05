@@ -1,8 +1,6 @@
 import React from "react";
 
-import SearchDropdown from "../SearchDropdown/SearchDropdown";
-
-import "./SearchDetail.css";
+import SearchDropdown from "./SearchDropdown";
 
 export const SearchDetail = () => {
   return (

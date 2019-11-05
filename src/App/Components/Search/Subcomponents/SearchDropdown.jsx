@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
-import { updateSelection } from "../../../../Actions/searchActions";
-
-import "./SearchDropdown.css";
+import { updateSelection } from "../../../Actions/searchActions";
 
 class SearchDropdown extends Component {
   handleSelect = e => {

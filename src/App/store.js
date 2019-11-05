@@ -5,9 +5,6 @@ import rootReducer from "./Reducers";
 import rootSaga from "./Sagas";
 
 const systemInitialState = {
-  system: {
-    contentDisplay: "search",
-  },
   search: {
     params: {
       q: null,

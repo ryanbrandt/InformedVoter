@@ -22,6 +22,9 @@ class ResultsTable extends Component {
         {results.map((result, i) => {
           return <ResultRow key={i} result={result} />;
         })}
+        {results.length === 0 && (
+          <p className="app-text-info">No candidates found</p>
+        )}
       </>
     );
   }

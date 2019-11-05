@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { Badge } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import "./SearchStatus.css";
 import {
   decodeStatus,
   decodeOffice,
   decodeParty,
-} from "../../../../Utils/helpers";
-import { clearSelection, clearQuery } from "../../../../Actions/searchActions";
+} from "../../../Utils/helpers";
+import { clearSelection, clearQuery } from "../../../Actions/searchActions";
 
 class SearchStatus extends Component {
   decodeAdvanced = (advanced, key) => {

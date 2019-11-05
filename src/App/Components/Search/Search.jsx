@@ -2,11 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import FormElement from "../../Common/Components/FormElement/FormElement";
-import SearchDetail from "./Subcomponents/SearchDetail/SearchDetail";
-import SearchStatus from "./Subcomponents/SearchStatus/SearchStatus";
+import SearchDetail from "./Subcomponents/SearchDetail";
+import SearchStatus from "./Subcomponents/SearchStatus";
+import ResultsTable from "../ResultsTable/ResultsTable";
 import { doSearch, updateQuery } from "../../Actions/searchActions";
 
 class Search extends Component {
+  componentDidMount() {
+    const { doSearch } = this.props;
+
+    doSearch();
+  }
+
   componentWillUnmount() {
     if (this.changeTimer) clearInterval(this.changeTimer);
   }
@@ -27,27 +34,43 @@ class Search extends Component {
     }
   };
 
+  renderHeader = () => {
+    return (
+      <>
+        <h1>Welcome to Informed Voter</h1>
+        <p className="app-text-info">
+          Gain insight into candidates finances, candidacy history, committee
+          membership, trends and more
+        </p>
+      </>
+    );
+  };
+
   render() {
     const { doSearch } = this.props;
 
     return (
-      <div className="search-grid">
-        <FormElement
-          type="text"
-          id="search_candidate"
-          required={false}
-          placeholder="Search Candidates By Name"
-          changeHandler={e => this.debouncedChangeHandler(e)}
-        />
-        <SearchStatus />
-        <SearchDetail />
-        <FormElement
-          type="submit"
-          required={false}
-          label="Search"
-          clickHandler={() => doSearch()}
-        />
-      </div>
+      <>
+        {this.renderHeader()}
+        <div className="search-grid">
+          <FormElement
+            type="text"
+            id="search_candidate"
+            required={false}
+            placeholder="Search Candidates By Name"
+            changeHandler={e => this.debouncedChangeHandler(e)}
+          />
+          <SearchStatus />
+          <SearchDetail />
+          <FormElement
+            type="submit"
+            required={false}
+            label="Search"
+            clickHandler={() => doSearch()}
+          />
+        </div>
+        <ResultsTable />
+      </>
     );
   }
 }

@@ -23,10 +23,7 @@ class CandidateHub extends Component {
     return (
       <div className="hub-header">
         <h1 className="candidate-header">{candidate}</h1>
-        <p className="header-detail">
-          Gain insight into candidates finances, candidacy history, committee
-          membership, trends and more
-        </p>
+        <hr />
       </div>
     );
   }

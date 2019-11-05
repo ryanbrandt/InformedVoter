@@ -56,7 +56,7 @@ const ExpandedRow = props => {
           handleClick(e);
         }}
       >
-        See financials and more
+        See the full data
       </a>
     </Row>
   );
