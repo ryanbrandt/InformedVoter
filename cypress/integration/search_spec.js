@@ -63,5 +63,13 @@ describe("Search", () => {
       .should("be.visible");
   });
 
-  it.skip("Scrolls through pages", () => {});
+  // improve me!
+  it("Scrolls through pages", () => {
+    cy.get(".pagination-detail")
+      .find("li")
+      .eq(2)
+      .click();
+    cy.wait(2000);
+    cy.get(".result-row:eq(0)").should("contain", "ABBOTT, JOHN HANCOCK");
+  });
 });

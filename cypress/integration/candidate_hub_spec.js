@@ -1,4 +1,4 @@
-describe("Search", () => {
+describe("Candidate Hub", () => {
   before(function() {
     cy.go_home();
     cy.submit_search();
