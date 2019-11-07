@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
+import { getDeviceStatus } from "../../../Selectors/systemSelectors";
 import { setActiveCandidate } from "../../../Actions/hubActions";
 import { decodeStatus } from "../../../Utils/helpers";
 
 const ExpandedRow = props => {
+  const { result } = props;
+
   const handleClick = async e => {
     e.preventDefault();
     const { setActiveCandidate, history } = props;
@@ -19,33 +22,8 @@ const ExpandedRow = props => {
     history.push("/candidate-hub");
   };
 
-  const { result } = props;
-
-  return (
-    <Row
-      className="expanded-content"
-      style={{ padding: "10px", textAlign: "center" }}
-    >
-      <Col>
-        <Row>
-          <b>Affiliation:</b>&nbsp;
-          {result.party_full ? result.party_full : "N/A"}
-        </Row>
-        <Row>
-          <b>Active Through:</b>&nbsp;
-          {result.active_through ? result.active_through : "N/A"}
-        </Row>
-      </Col>
-      <Col>
-        <Row>
-          <b>Status:</b>&nbsp;
-          {decodeStatus(result.candidate_status)}
-        </Row>
-        <Row>
-          <b>Last Filed:</b>&nbsp;
-          {new Date(result.last_file_date).toLocaleDateString()}
-        </Row>
-      </Col>
+  const renderHubLink = () => {
+    return (
       <a
         href="#"
         data-value={result.candidate_id}
@@ -56,11 +34,75 @@ const ExpandedRow = props => {
           handleClick(e);
         }}
       >
-        See the full data
+        View Candidate Page
       </a>
+    );
+  };
+
+  const renderColumnLeft = () => {
+    return (
+      <>
+        <Row>
+          <b>Affiliation:</b>&nbsp;
+          {result.party_full ? result.party_full : "N/A"}
+        </Row>
+        <Row>
+          <b>Active Through:</b>&nbsp;
+          {result.active_through ? result.active_through : "N/A"}
+        </Row>
+      </>
+    );
+  };
+
+  const renderColumnRight = () => {
+    return (
+      <>
+        <Row>
+          <b>Status:</b>&nbsp;
+          {decodeStatus(result.candidate_status)}
+        </Row>
+        <Row>
+          <b>Last Filed:</b>&nbsp;
+          {new Date(result.last_file_date).toLocaleDateString()}
+        </Row>
+      </>
+    );
+  };
+
+  const renderRowContent = () => {
+    const { mobile } = props;
+    if (mobile) {
+      return (
+        <Col>
+          {renderColumnLeft()}
+          {renderColumnRight()}
+          <Row>{renderHubLink()}</Row>
+        </Col>
+      );
+    }
+
+    return (
+      <>
+        <Col>{renderColumnLeft()}</Col>
+        <Col>{renderColumnRight()}</Col>
+        {renderHubLink()}
+      </>
+    );
+  };
+
+  return (
+    <Row
+      className="expanded-content"
+      style={{ padding: "10px", textAlign: "center" }}
+    >
+      {renderRowContent()}
     </Row>
   );
 };
+
+const mapStateToProps = state => ({
+  mobile: getDeviceStatus(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   setActiveCandidate: (id, candidate) =>
@@ -69,7 +111,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(ExpandedRow)
 );
