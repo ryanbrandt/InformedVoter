@@ -10,7 +10,7 @@ describe("Candidate Hub", () => {
       .find(".fa")
       .click();
     cy.get(".expanded-row-active")
-      .find("a:contains(See financials and more)")
+      .find("a:contains(View Candidate Page)")
       .click();
     cy.get(".candidate-header").should("contain", "753, JO");
   });

@@ -7,6 +7,7 @@ export default class ResultRow extends Component {
     super(props);
     this.state = {
       expanded: false,
+      hover: false,
     };
   }
 
@@ -18,21 +19,30 @@ export default class ResultRow extends Component {
     });
   };
 
+  handleHover = isMouseEnter => {
+    this.setState({
+      hover: isMouseEnter,
+    });
+  };
+
   render() {
     const { result } = this.props;
-    const { expanded } = this.state;
+    const { expanded, hover } = this.state;
 
     return (
-      <div className="result-row">
+      <div
+        className={hover || expanded ? "result-row-dark" : "result-row"}
+        onClick={e => this.toggleExpand(e)}
+        onMouseEnter={() => this.handleHover(true)}
+        onMouseLeave={() => this.handleHover(false)}
+      >
         <div className="result-content">
           {result.name}
-          <a href="#" onClick={e => this.toggleExpand(e)}>
-            {expanded ? (
-              <i className="fa fa-minus fa-lg expand-icon" />
-            ) : (
-              <i className="fa fa-plus fa-lg expand-icon" />
-            )}
-          </a>
+          {expanded ? (
+            <i className="fa fa-minus fa-lg expand-icon" />
+          ) : (
+            <i className="fa fa-plus fa-lg expand-icon" />
+          )}
         </div>
         <small>
           For <b>{result.office_full}</b>

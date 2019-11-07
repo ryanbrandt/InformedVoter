@@ -1,12 +1,9 @@
-import { select, put, takeLatest, call } from "redux-saga/effects";
+import { select, put, takeLatest, call, all } from "redux-saga/effects";
 
 import { getActiveCandidateId } from "../Selectors/hubSelectors";
 import { fecApi, doGet } from "../Utils/api";
 
-/**
- * Initialize hub
- */
-export function* initializeHub() {
+function* initializeHub() {
   yield put({ type: "REQUEST_INITIALIZATION" });
   const candidateId = yield select(getActiveCandidateId);
 
@@ -22,6 +19,10 @@ export function* initializeHub() {
   }
 }
 
-export function* watchInitializeHub() {
+function* watchInitializeHub() {
   yield takeLatest("INITIALIZE_CANDIDATE_HUB", initializeHub);
+}
+
+export default function* hubSaga() {
+  yield all([watchInitializeHub()]);
 }

@@ -47,7 +47,7 @@ describe("Search", () => {
     cy.get(".fa")
       .get(".fa-plus")
       .click();
-    cy.get(".expanded-row-active").should("contain", "See financials and more");
+    cy.get(".expanded-row-active").should("contain", "View Candidate Page");
     cy.get(".fa")
       .get(".fa-minus")
       .click();
@@ -70,6 +70,6 @@ describe("Search", () => {
       .eq(2)
       .click();
     cy.wait(2000);
-    cy.get(".result-row:eq(0)").should("contain", "ABBOTT, JOHN HANCOCK");
+    cy.get(".result-row:eq(0)").should("not.contain", "753, JO");
   });
 });

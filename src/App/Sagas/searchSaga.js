@@ -1,12 +1,9 @@
-import { select, put, takeLatest, call } from "redux-saga/effects";
+import { select, put, takeLatest, call, all } from "redux-saga/effects";
 
 import { getParams } from "../Selectors/searchSelectors";
 import { fecApi, doGet, getUrlWithParams } from "../Utils/api";
 
-/**
- * Search
- */
-export function* doSearch(action) {
+function* doSearch(action) {
   // only show loader/clear pagination if base request
   if (!action.page) {
     yield put({ type: "REQUEST_SEARCH" });
@@ -30,6 +27,10 @@ export function* doSearch(action) {
   }
 }
 
-export function* watchDoSearch() {
+function* watchDoSearch() {
   yield takeLatest("DO_SEARCH", doSearch);
+}
+
+export default function* searchSaga() {
+  yield all([watchDoSearch()]);
 }

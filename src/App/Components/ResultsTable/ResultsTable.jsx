@@ -19,8 +19,8 @@ class ResultsTable extends Component {
     return (
       <>
         {pages > 1 && <PaginationDetail />}
-        {results.map((result, i) => {
-          return <ResultRow key={i} result={result} />;
+        {results.map(result => {
+          return <ResultRow key={result.candidate_id} result={result} />;
         })}
         {results.length === 0 && (
           <p className="app-text-info">No candidates found</p>

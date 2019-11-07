@@ -5,6 +5,9 @@ import rootReducer from "./Reducers";
 import rootSaga from "./Sagas";
 
 const systemInitialState = {
+  system: {
+    mobile: false,
+  },
   search: {
     params: {
       q: null,

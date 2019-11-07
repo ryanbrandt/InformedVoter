@@ -1,0 +1,1 @@
+export const SET_DEVICE_STATUS = "SET_DEVICE_STATUS";
