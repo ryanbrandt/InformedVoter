@@ -23,7 +23,7 @@ function* doSearch(action) {
       pagination: data.pagination,
     });
   } else {
-    yield put({ type: "SEARCH_REQUEST_FAILED", problem });
+    yield put({ type: "API_ERROR", error: problem });
   }
 }
 

@@ -7,6 +7,7 @@ import rootSaga from "./Sagas";
 const systemInitialState = {
   system: {
     mobile: false,
+    apiErrors: null,
   },
   search: {
     params: {

@@ -2,6 +2,7 @@ import * as a from "../Constants/systemTypes";
 
 const initialState = {
   mobile: false,
+  apiErrors: null,
 };
 
 export default function(state = initialState, action) {
@@ -12,6 +13,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         mobile,
+      };
+    }
+
+    case a.API_ERROR: {
+      const { error } = action;
+
+      return {
+        ...state,
+        apiErrors: error,
       };
     }
 

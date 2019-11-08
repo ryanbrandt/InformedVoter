@@ -23,6 +23,7 @@ export default function(state = initialState, action) {
           },
         },
       };
+
     case a.CLEAR_SELECTION:
       return {
         ...state,
@@ -34,6 +35,7 @@ export default function(state = initialState, action) {
           },
         },
       };
+
     case a.CLEAR_QUERY:
       return {
         ...state,
@@ -42,6 +44,7 @@ export default function(state = initialState, action) {
           q: null,
         },
       };
+
     case a.UPDATE_QUERY:
       return {
         ...state,
@@ -50,22 +53,26 @@ export default function(state = initialState, action) {
           q: action.query !== "" ? action.query : null,
         },
       };
+
     case a.REQUEST_SEARCH:
       return {
         ...state,
         fetching: true,
       };
+
     case a.SEARCH_RESULTS_RECEIVED:
       return {
         ...state,
         results: action.results,
         fetching: false,
       };
+
     case a.PAGINATE_SEARCH_RESULTS:
       return {
         ...state,
         pagination: action.pagination,
       };
+
     case a.CLEAR_PAGINATION:
       return {
         ...state,

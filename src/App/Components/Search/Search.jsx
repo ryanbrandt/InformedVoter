@@ -26,11 +26,11 @@ class Search extends Component {
       clearTimeout(this.changeTimer);
       this.changeTimer = setTimeout(() => {
         updateQuery(value.trim());
-      }, 500);
+      }, 200);
     } else {
       this.changeTimer = setTimeout(() => {
         updateQuery(value.trim());
-      }, 500);
+      }, 200);
     }
   };
 
@@ -39,8 +39,7 @@ class Search extends Component {
       <>
         <h1>Welcome to Informed Voter</h1>
         <p className="app-text-info">
-          Gain insight into candidates finances, candidacy history, committee
-          membership, trends and more
+          Your resource for insight into candidates finances, history and trends
         </p>
       </>
     );

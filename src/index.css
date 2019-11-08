@@ -58,6 +58,16 @@ h5 {
   color: gray;
 }
 
+.error-boundary {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 /**
 * App Themes
 **/
