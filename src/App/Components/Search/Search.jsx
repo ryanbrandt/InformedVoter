@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Jumbotron } from "react-bootstrap";
 
-import FormElement from "../../Common/Components/FormElement/FormElement";
+import FormElement from "../../Common/Components/AppFormElement";
 import SearchDetail from "./Subcomponents/SearchDetail";
 import SearchStatus from "./Subcomponents/SearchStatus";
 import ResultsTable from "../ResultsTable/ResultsTable";
-import { doSearch, updateQuery } from "../../Actions/searchActions";
+import { getHelpVisible } from "../../Selectors/searchSelectors";
+import {
+  doSearch,
+  updateQuery,
+  setHelpHidden,
+} from "../../Actions/searchActions";
 
 class Search extends Component {
   componentDidMount() {
@@ -35,22 +41,34 @@ class Search extends Component {
   };
 
   renderHeader = () => {
+    const { hideHelp } = this.props;
+
     return (
-      <>
-        <h1>Welcome to Informed Voter</h1>
+      <Jumbotron>
+        <h1>Where to Start</h1>
         <p className="app-text-info">
-          Your resource for insight into candidates finances, history and trends
+          1) Search for your candidate of interest
         </p>
-      </>
+        <p className="app-text-info">
+          2) Expand their row, navigate to their Candidate Hub
+        </p>
+        <p className="app-text-info">
+          3) View their aggregated Federal Election Committee data, compare them
+          to other candidates, get informed
+        </p>
+        <a href="#" className="app-link" onClick={() => hideHelp()}>
+          Hide
+        </a>
+      </Jumbotron>
     );
   };
 
   render() {
-    const { doSearch } = this.props;
+    const { doSearch, helpVisible } = this.props;
 
     return (
       <>
-        {this.renderHeader()}
+        {helpVisible && this.renderHeader()}
         <div className="search-grid">
           <FormElement
             type="text"
@@ -74,13 +92,16 @@ class Search extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  pagination: state.search.pagination,
-});
+const mapStateToProps = state => {
+  return {
+    helpVisible: getHelpVisible(state),
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   doSearch: () => dispatch(doSearch()),
   updateQuery: q => dispatch(updateQuery(q)),
+  hideHelp: () => dispatch(setHelpHidden()),
 });
 
 export default connect(

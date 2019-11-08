@@ -47,7 +47,7 @@ describe("Search", () => {
     cy.get(".fa")
       .get(".fa-plus")
       .click();
-    cy.get(".expanded-row-active").should("contain", "View Candidate Page");
+    cy.get(".expanded-row-active").should("contain", "Go To Candidate Hub");
     cy.get(".fa")
       .get(".fa-minus")
       .click();

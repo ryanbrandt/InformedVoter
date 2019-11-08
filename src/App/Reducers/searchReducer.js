@@ -8,6 +8,7 @@ const initialState = {
   results: [],
   pagination: {},
   fetching: false,
+  helpVisible: true,
 };
 
 export default function(state = initialState, action) {
@@ -81,6 +82,21 @@ export default function(state = initialState, action) {
           page: null,
         },
       };
+
+    case a.SET_HELP_HIDDEN: {
+      return {
+        ...state,
+        helpVisible: false,
+      };
+    }
+
+    case a.SET_HELP_VISIBLE: {
+      return {
+        ...state,
+        helpVisible: true,
+      };
+    }
+
     default:
       return state;
   }

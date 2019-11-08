@@ -33,6 +33,8 @@ export function decodeParty(party) {
       return "Green";
     case "LIB":
       return "Libertarian";
+    case "IND":
+      return "Independant";
     default:
       return "N/A";
   }

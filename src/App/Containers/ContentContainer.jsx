@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Switch, Route, Redirect } from "react-router";
 
 import { getDeviceStatus } from "../Selectors/systemSelectors";
+import Footer from "../Common/Components/Footer";
 import Search from "../Components/Search/Search";
 import CandidateHub from "../Components/CandidateHub/CandidateHub";
 
@@ -20,6 +21,7 @@ const ContentContainer = props => {
         </Route>
         <Redirect from="*" to="/search" />
       </Switch>
+      <Footer />
     </div>
   );
 };

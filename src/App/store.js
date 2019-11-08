@@ -17,6 +17,7 @@ const systemInitialState = {
     results: [],
     pagination: {},
     fetching: false,
+    helpVisible: true,
   },
   hub: {
     activeCandidateId: null,
@@ -24,6 +25,7 @@ const systemInitialState = {
     initializing: false,
     financials: [],
     history: [],
+    helpVisible: false,
   },
 };
 

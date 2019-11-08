@@ -59,3 +59,15 @@ export const requestSearch = () => {
     type: a.REQUEST_SEARCH,
   };
 };
+
+export const setHelpVisible = () => {
+  return {
+    type: a.SET_HELP_VISIBLE,
+  };
+};
+
+export const setHelpHidden = () => {
+  return {
+    type: a.SET_HELP_HIDDEN,
+  };
+};
