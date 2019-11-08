@@ -12,7 +12,6 @@ export const CLEAR_QUERY = "CLEAR_QUERY";
 export const REQUEST_SEARCH = "REQUEST_SEARCH";
 export const DO_SEARCH = "DO_SEARCH";
 export const SEARCH_RESULTS_RECEIVED = "SEARCH_RESULTS_RECEIVED";
-export const SEARCH_REQUEST_FAILED = "SEARCH_REQUEST_FAILED";
 
 /**
  * Pagination

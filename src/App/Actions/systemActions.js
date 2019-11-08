@@ -6,3 +6,10 @@ export const setDeviceStatus = mobile => {
     mobile,
   };
 };
+
+export const setApiError = error => {
+  return {
+    type: a.API_ERROR,
+    error,
+  };
+};

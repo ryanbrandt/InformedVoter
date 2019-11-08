@@ -9,6 +9,7 @@ import {
 import PaginationDetail from "./Subcomponents/PaginationDetail";
 import ResultRow from "./Subcomponents/ResultRow";
 import Loader from "../../Common/Components/Loader/Loader";
+import AppAlert from "../../Common/Components/AppAlert";
 
 class ResultsTable extends Component {
   renderContent() {
@@ -23,7 +24,10 @@ class ResultsTable extends Component {
           return <ResultRow key={result.candidate_id} result={result} />;
         })}
         {results.length === 0 && (
-          <p className="app-text-info">No candidates found</p>
+          <AppAlert
+            variant="danger"
+            childText="No candidates found. Try refining your search"
+          />
         )}
       </>
     );
@@ -39,6 +43,7 @@ const mapStateToProps = state => ({
   results: getSearchResults(state),
   pages: getNumResultPages(state),
 });
+
 export default connect(
   mapStateToProps,
   {}

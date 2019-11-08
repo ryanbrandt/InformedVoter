@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { getApiErrors } from "../Selectors/systemSelectors";
 import { setDeviceStatus } from "../Actions/systemActions";
 import ContentContainer from "./ContentContainer";
 
@@ -8,6 +9,12 @@ class MainGrid extends Component {
   componentDidMount() {
     window.addEventListener("resize", this.debouncedResizeHandler);
     this.debouncedResizeHandler();
+  }
+
+  componentDidUpdate() {
+    const { apiErrors } = this.props;
+    // bubble up error boundary, bad practice?
+    if (apiErrors) throw new Error("FEC API Connection Error");
   }
 
   componentWillUnmount() {
@@ -47,6 +54,12 @@ class MainGrid extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    apiErrors: getApiErrors(state),
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     setDeviceisMobile: mobile => dispatch(setDeviceStatus(mobile)),
@@ -54,6 +67,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(MainGrid);
