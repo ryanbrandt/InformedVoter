@@ -8,7 +8,7 @@ import {
 } from "../../Selectors/searchSelectors";
 import PaginationDetail from "./Subcomponents/PaginationDetail";
 import ResultRow from "./Subcomponents/ResultRow";
-import Loader from "../../Common/Components/Loader/Loader";
+import Loader from "../../Common/Components/Loader";
 import AppAlert from "../../Common/Components/AppAlert";
 
 class ResultsTable extends Component {

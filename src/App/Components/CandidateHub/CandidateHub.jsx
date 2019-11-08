@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Loader from "../../Common/Components/Loader/Loader";
+import Loader from "../../Common/Components/Loader";
 import {
   getHubInitializing,
   getActiveCandidate,

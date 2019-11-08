@@ -18,3 +18,9 @@ export const SEARCH_RESULTS_RECEIVED = "SEARCH_RESULTS_RECEIVED";
  */
 export const PAGINATE_SEARCH_RESULTS = "PAGINATE_SEARCH_RESULTS";
 export const CLEAR_PAGINATION = "CLEAR_PAGINATION";
+
+/**
+ * Tutorial (?)/Help
+ */
+export const SET_HELP_VISIBLE = "search/SET_HELP_VISIBLE";
+export const SET_HELP_HIDDEN = "search/SET_HELP_HIDDEN";

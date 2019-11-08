@@ -34,7 +34,7 @@ const ExpandedRow = props => {
           handleClick(e);
         }}
       >
-        View Candidate Page
+        Go to Candidate Hub
       </a>
     );
   };

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
-import "./FormElement.css";
-
-export default class FormElement extends Component {
+class AppFormElement extends Component {
   renderLabel() {
     const { label, required, id } = this.props;
 
     return label ? (
-      <label className={required ? "required" : ""} htmlFor={id}>
+      <label
+        className={`form-label ${required ? "required" : ""}`}
+        htmlFor={id}
+      >
         {label}
       </label>
     ) : null;
@@ -51,7 +52,7 @@ export default class FormElement extends Component {
     const { type, label, clickHandler } = this.props;
 
     return (
-      <div className="form-element button">
+      <div className="form-element form-center">
         <button type={type} className="btn btn-primary" onClick={clickHandler}>
           {label}
         </button>
@@ -71,3 +72,5 @@ export default class FormElement extends Component {
     return this.renderButton();
   }
 }
+
+export default AppFormElement;
